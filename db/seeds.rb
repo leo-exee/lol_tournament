@@ -1,8 +1,8 @@
 puts "🔄 Nettoyage de la base..."
+Result.destroy_all
+Match.destroy_all
 Player.destroy_all
 Team.destroy_all
-Match.destroy_all
-Result.destroy_all
 
 puts "✅ Création des équipes..."
 team1 = Team.create!(name: "Team Phoenix")
