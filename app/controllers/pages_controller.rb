@@ -1,6 +1,15 @@
 class PagesController < ApplicationController
   def home
-    @recent_matches = Match.order(date: :desc).limit(5)
+    @recent_played_matches = Match
+      .joins(:result)
+      .order(date: :desc)
+      .limit(5)
+
+    @upcoming_matches = Match
+      .left_joins(:result)
+      .where(results: { id: nil })
+      .order(date: :asc)
+      .limit(5)
 
     @top_teams = Team
       .left_joins(:wins)

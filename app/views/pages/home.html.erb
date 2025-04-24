@@ -1,8 +1,8 @@
 <div class="max-w-7xl mx-auto p-6">
   
-  <h2 class="text-3xl font-bold mb-6">🎮 Derniers matchs</h2>
+  <h2 class="text-3xl font-bold mb-6">✅ Derniers matchs joués</h2>
   <div class="space-y-4">
-    <% @recent_matches.each do |match| %>
+    <% @recent_played_matches.each do |match| %>
       <%= link_to match_path(match), class: "block bg-white p-4 rounded-lg shadow hover:shadow-md transition flex justify-between items-center" do %>
         <div>
           <p class="font-semibold text-gray-800">
@@ -10,26 +10,36 @@
           </p>
           <p class="text-sm text-gray-500"><%= match.date.strftime("%d/%m/%Y %H:%M") %></p>
         </div>
-        <% if match.result %>
-          <div class="text-green-600 font-semibold">
-            Gagnant : <%= match.result.winning_team.name %>
-          </div>
-        <% else %>
-          <div class="text-gray-400 italic">Pas encore joué</div>
-        <% end %>
+        <div class="text-green-600 font-semibold">
+          Gagnant : <%= match.result.winning_team.name %>
+        </div>
       <% end %>
     <% end %>
+  </div>
 
+  <h2 class="text-3xl font-bold my-6">🕒 Matchs à venir</h2>
+  <div class="space-y-4">
+    <% @upcoming_matches.each do |match| %>
+      <%= link_to match_path(match), class: "block bg-white p-4 rounded-lg shadow hover:shadow-md transition flex justify-between items-center" do %>
+        <div>
+          <p class="font-semibold text-gray-800">
+            <%= match.team1.name %> vs <%= match.team2.name %>
+          </p>
+          <p class="text-sm text-gray-500"><%= match.date.strftime("%d/%m/%Y %H:%M") %></p>
+        </div>
+        <div class="text-gray-400 italic">Pas encore joué</div>
+      <% end %>
+    <% end %>
   </div>
 
   <h2 class="text-3xl font-bold my-6">🏆 Classement des équipes</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
     <% @top_teams.each_with_index do |team, i| %>
       <%= link_to team_path(team), class: "block bg-white p-4 rounded-xl shadow hover:shadow-md transition" do %>
-        <h2 class="text-xl font-semibold text-gray-800"><%= "#{i+1}. #{team.name}" %></h2>
+        <h2 class="text-xl font-semibold text-gray-800"><%= "#{i + 1}. #{team.name}" %></h2>
         <p class="text-gray-500">Victoires : <%= team.wins.count %></p>
       <% end %>
     <% end %>
-
   </div>
+
 </div>
