@@ -1,70 +1,46 @@
 class ResultsController < ApplicationController
-  before_action :set_result, only: %i[ show edit update destroy ]
-
-  # GET /results or /results.json
-  def index
-    @results = Result.all
-  end
-
-  # GET /results/1 or /results/1.json
-  def show
-  end
-
-  # GET /results/new
-  def new
-    @result = Result.new
-  end
-
-  # GET /results/1/edit
-  def edit
-  end
+  before_action :set_match, only: %i[ create ]
 
   # POST /results or /results.json
   def create
-    @result = Result.new(result_params)
+    if @match.result
+      redirect_to @match, alert: "Ce match a déjà un résultat." and return
+    end
+
+    winning_team = [ @match.team1_id, @match.team2_id ].sample
+
+    @result = Result.new
+    @result.match = @match
+    @result.winning_team_id = winning_team
+
+    if @result.winning_team_id == @match.team1_id
+      @result.team1_score = rand(4..8)
+      @result.team2_score = rand(0..4)
+    else
+      @result.team1_score = rand(0..4)
+      @result.team2_score = rand(4..8)
+    end
 
     respond_to do |format|
       if @result.save
-        format.html { redirect_to @result, notice: "Result was successfully created." }
-        format.json { render :show, status: :created, location: @result }
+        format.html { redirect_to @match, notice: "Le résultat a été créé avec succès." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @result.errors, status: :unprocessable_entity }
+        format.html { redirect_to @match, alert: "Erreur lors de la création du résultat." }
       end
     end
   end
 
-  # PATCH/PUT /results/1 or /results/1.json
-  def update
-    respond_to do |format|
-      if @result.update(result_params)
-        format.html { redirect_to @result, notice: "Result was successfully updated." }
-        format.json { render :show, status: :ok, location: @result }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @result.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /results/1 or /results/1.json
-  def destroy
-    @result.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to results_path, status: :see_other, notice: "Result was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_result
-      @result = Result.find(params.expect(:id))
+      @result = Result.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    def set_match
+      @match = Match.find(params[:match_id])
+    end
+
     def result_params
-      params.expect(result: [ :match_id, :winning_team_id, :team1_score, :team2_score ])
+      params.require(:result).permit(:match_id)
     end
 end

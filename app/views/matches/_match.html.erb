@@ -46,6 +46,11 @@
       <p class="text-gray-400 italic">
         Les résultats de ce match ne sont pas encore disponibles.
       </p>
+      <%= form_with url: match_results_path(match), method: :post, local: true do |form| %>
+        <div class="mt-4">
+          <%= form.submit "Générer le résultat", class: "px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

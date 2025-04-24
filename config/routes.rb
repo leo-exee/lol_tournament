@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resources :teams
   resources :players
-  resources :matches
+  resources :matches do
+    resources :results, only: [ :create ]
+  end
   resources :results
-  
+
   root "pages#home"
 
 
