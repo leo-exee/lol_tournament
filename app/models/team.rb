@@ -1,11 +1,11 @@
 class Team < ApplicationRecord
   has_many :players, dependent: :destroy
-  has_many :home_matches, class_name: 'Match', foreign_key: 'team1_id'
-  has_many :away_matches, class_name: 'Match', foreign_key: 'team2_id'
-  has_many :wins, class_name: 'Result', foreign_key: 'winning_team_id'
+  has_many :home_matches, class_name: "Match", foreign_key: "team1_id"
+  has_many :away_matches, class_name: "Match", foreign_key: "team2_id"
+  has_many :wins, class_name: "Result", foreign_key: "winning_team_id"
 
   validates :name, presence: true, uniqueness: true
-  validates :logo, allow_blank: true, format: { with: URI::regexp(%w[http https]), message: "doit être une URL valide" }
+  validates :logo, allow_blank: true, format: { with: URI.regexp(%w[http https]), message: "doit être une URL valide" }
 
   validate :max_five_players
 

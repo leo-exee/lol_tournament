@@ -7,14 +7,11 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'LeagueFont';
-      src: url('https://example.com/path-to-league-font.woff2') format('woff2'); 
-    }
     .header-bg {
-      background-image: url('https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/gamemodeassets/classic_sru/img/gameflow-background.jpg'); /* Remplacez par une image de fond appropriée */
+      background-image: url('https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/gamemodeassets/classic_sru/img/gameflow-background.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -26,42 +23,38 @@
     }
   </style>
 </head>
-<body class="bg-gray-100">
-  <header class="header-bg text-white p-6">
-    <div class="flex justify-between items-center">
-      <h1 class="text-4xl font-bold font-LeagueFont">Gestion du Tournoi League of Legends</h1>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <header class="header-bg text-white p-6"> 
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <h1 class="text-4xl font-bold">Gestion du Tournoi League of Legends</h1>
       <nav>
         <ul class="flex space-x-6 items-center">
+          <li><%= link_to 'Accueil', root_path, class: 'text-white hover:text-yellow-400' %></li>
+          <li><%= link_to 'Matchs', matches_path, class: 'text-white hover:text-yellow-400' %></li>
           <li><%= link_to 'Équipes', teams_path, class: 'text-white hover:text-yellow-400' %></li>
           <li><%= link_to 'Joueurs', players_path, class: 'text-white hover:text-yellow-400' %></li>
-          <li><%= link_to 'Matchs', matches_path, class: 'text-white hover:text-yellow-400' %></li>
-          <li><%= link_to 'Accueil', root_path, class: 'text-white hover:text-yellow-400' %></li>
-                    <li class="relative">
+          <li class="relative">
             <% if user_signed_in? %>
-              <button id="userMenuButton" class="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg focus:outline-none border-2 border-yellow-400">
-                <span>Mon compte</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
+              <button id="userMenuButton" class="flex items-center bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg transition duration-200">
+                Mon compte
+                <i class="fa-solid fa-angle-down pl-2"></i>
               </button>
               <div id="userDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg overflow-hidden z-20">
                 <div class="py-1">
-                  <%= link_to 'Mon Profil', user_path(current_user), class: 'block px-4 py-2 text-sm text-yellow-400 hover:bg-gray-700' %>
                   <% if admin? %>
-                    <div class="px-4 py-2 text-sm bg-purple-800 text-white">
-                      Administrateur
+                    <div class="px-4 py-2 text-sm text-white">
+                      Connecté en tant qu'administrateur
                     </div>
                   <% end %>
+                  <%= link_to 'Mon Profil', user_path(current_user), class: 'block px-4 py-2 text-sm text-yellow-400 hover:bg-gray-700' %>
                   <div class="border-t border-gray-700"></div>
                   <%= button_to 'Déconnexion', logout_path, method: :delete, class: 'block w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700' %>
                 </div>
               </div>
             <% else %>
-              <button id="userMenuButton" class="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg focus:outline-none border-2 border-yellow-400">
-                <span>Compte</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
+              <button id="userMenuButton" class="flex items-center bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-lg transition duration-200">
+                S'authentifier
+                <i class="fa-solid fa-angle-down pl-2"></i>
               </button>
               <div id="userDropdown" class="dropdown-menu absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg overflow-hidden z-20">
                 <div class="py-1">
@@ -76,14 +69,16 @@
       </nav>
     </div>
   </header>
-  <main class="p-4">
+
+  <main class="p-4 flex-grow">
     <div class="container mx-auto">
       <%= render 'layouts/flash' %>
       <%= yield %>
     </div>
   </main>
-  <footer class="bg-gray-800 text-white text-center p-4">
-    <p>&copy; 2023 Gestion Tournoi LoL</p>
+
+  <footer class="header-bg bg-gray-800 text-white text-center p-4">
+    <p>&copy; 2025 Gestion Tournoi LoL</p>
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -104,4 +99,6 @@
     });
   </script>
 </body>
+<script src="https://kit.fontawesome.com/60a2d3ab97.js" crossorigin="anonymous"></script>
+
 </html>

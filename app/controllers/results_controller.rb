@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   before_action :set_match, only: %i[ create ]
-  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_admin, only: [ :create ]
 
   # POST /results or /results.json
   def create
@@ -26,9 +26,9 @@ class ResultsController < ApplicationController
 
     respond_to do |format|
       if @result.save
-        format.html { redirect_to @match, notice: "Le résultat a été créé avec succès." }
+        format.html { redirect_to @match, notice: "Le résultat a été générée avec succès." }
       else
-        format.html { redirect_to @match, alert: "Erreur lors de la création du résultat." }
+        format.html { redirect_to @match, alert: "Erreur lors de la génération du résultat." }
       end
     end
   end

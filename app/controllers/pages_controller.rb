@@ -3,13 +3,13 @@ class PagesController < ApplicationController
     @recent_played_matches = Match
       .joins(:result)
       .order(date: :desc)
-      .limit(5)
+      .limit(3)
 
     @upcoming_matches = Match
       .left_joins(:result)
       .where(results: { id: nil })
       .order(date: :asc)
-      .limit(5)
+      .limit(3)
 
     @top_teams = Team
       .left_joins(:wins)

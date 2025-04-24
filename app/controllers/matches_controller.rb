@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: %i[ show edit update destroy ]
-  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_admin, only: [ :new, :create, :edit, :update, :destroy ]
 
 
   # GET /matches or /matches.json
@@ -21,6 +21,7 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
+    @teams = Team.all
   end
 
   # POST /matches or /matches.json
@@ -43,14 +44,16 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update(match_params)
-        format.html { redirect_to @match, notice: "Match was successfully updated." }
+        format.html { redirect_to @match, notice: "Le match a été mis à jour avec succès." }
         format.json { render :show, status: :ok, location: @match }
       else
+        @teams = Team.all  # Assure-toi que @teams est initialisé même en cas d'erreur
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
   end
+
 
   # DELETE /matches/1 or /matches/1.json
   def destroy

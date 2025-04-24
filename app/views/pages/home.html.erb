@@ -1,45 +1,82 @@
 <div class="max-w-7xl mx-auto p-6">
-  
-  <h2 class="text-3xl font-bold mb-6">✅ Derniers matchs joués</h2>
-  <div class="space-y-4">
-    <% @recent_played_matches.each do |match| %>
-      <%= link_to match_path(match), class: "block bg-white p-4 rounded-lg shadow hover:shadow-md transition flex justify-between items-center" do %>
-        <div>
-          <p class="font-semibold text-gray-800">
-            <%= match.team1.name %> vs <%= match.team2.name %>
-          </p>
-          <p class="text-sm text-gray-500"><%= match.date.strftime("%d/%m/%Y %H:%M") %></p>
-        </div>
-        <div class="text-green-600 font-semibold">
-          Gagnant : <%= match.result.winning_team.name %>
-        </div>
-      <% end %>
-    <% end %>
+
+  <div class="flex items-center justify-between mb-8">
+    <h2 class="text-3xl font-bold">✅ Derniers matchs joués</h2>
+    <p class="flex items-center">
+      <%= link_to "Voir tous les matchs", matches_path, class: "hover:underline" %>
+      <i class="fa-solid fa-angle-right pl-2"></i>
+    </p>
   </div>
 
-  <h2 class="text-3xl font-bold my-6">🕒 Matchs à venir</h2>
-  <div class="space-y-4">
-    <% @upcoming_matches.each do |match| %>
-      <%= link_to match_path(match), class: "block bg-white p-4 rounded-lg shadow hover:shadow-md transition flex justify-between items-center" do %>
-        <div>
-          <p class="font-semibold text-gray-800">
-            <%= match.team1.name %> vs <%= match.team2.name %>
-          </p>
-          <p class="text-sm text-gray-500"><%= match.date.strftime("%d/%m/%Y %H:%M") %></p>
-        </div>
-        <div class="text-gray-400 italic">Pas encore joué</div>
+  <% if @recent_played_matches.empty? %>
+    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+      <p class="text-gray-400 italic">Aucun match récent à afficher</p>
+    </div>
+  <% else %>
+    <div class="space-y-4">
+      <% @recent_played_matches.each do |match| %>
+        <%= link_to match_path(match), class: "block bg-white p-4 rounded-lg shadow hover:shadow-md transition duration-200 flex justify-between items-center" do %>
+          <div>
+            <p class="font-semibold text-gray-800">
+              <%= match.team1.name %> vs <%= match.team2.name %>
+            </p>
+            <p class="text-sm text-gray-500"><%= match.date.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
+          <div class="text-green-600 font-semibold">
+            Gagnant : <%= match.result.winning_team.name %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 
-  <h2 class="text-3xl font-bold my-6">🏆 Classement des équipes</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-    <% @top_teams.each_with_index do |team, i| %>
-      <%= link_to team_path(team), class: "block bg-white p-4 rounded-xl shadow hover:shadow-md transition" do %>
-        <h2 class="text-xl font-semibold text-gray-800"><%= "#{i + 1}. #{team.name}" %></h2>
-        <p class="text-gray-500">Victoires : <%= team.wins.count %></p>
-      <% end %>
-    <% end %>
+  <div class="flex items-center justify-between my-8">
+    <h2 class="text-3xl font-bold">🕒 Matchs à venir</h2>
+    <p class="flex items-center">
+      <%= link_to "Voir tous les matchs", matches_path, class: "hover:underline" %>
+      <i class="fa-solid fa-angle-right pl-2"></i>
+    </p>
   </div>
+  <% if @upcoming_matches.empty? %>
+    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+      <p class="text-gray-400 italic">Aucun match à venir pour le moment.</p>
+    </div>
+  <% else %>
+    <div class="space-y-4">
+      <% @upcoming_matches.each do |match| %>
+        <%= link_to match_path(match), class: "block bg-white p-4 rounded-lg shadow hover:shadow-md transition duration-200 flex justify-between items-center" do %>
+          <div>
+            <p class="font-semibold text-gray-800">
+              <%= match.team1.name %> vs <%= match.team2.name %>
+            </p>
+            <p class="text-sm text-gray-500"><%= match.date.strftime("%d/%m/%Y %H:%M") %></p>
+          </div>
+          <div class="text-gray-400 italic">Pas encore joué</div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="flex items-center justify-between my-8">
+    <h2 class="text-3xl font-bold">🏆 Classement des équipes</h2>
+    <p class="flex items-center">
+      <%= link_to "Voir toutes les équipes", teams_path, class: "hover:underline" %>
+      <i class="fa-solid fa-angle-right pl-2"></i>
+    </p>
+  </div>
+  <% if @top_teams.empty? %>
+    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+      <p class="text-gray-400 italic">Aucune équipe dans le classement pour le moment.</p>
+    </div>
+  <% else %>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+      <% @top_teams.each_with_index do |team, i| %>
+        <%= link_to team_path(team), class: "block bg-white p-4 rounded-xl shadow hover:shadow-md transition duration-200" do %>
+          <h2 class="text-xl font-semibold text-gray-800"><%= "#{i + 1}. #{team.name}" %></h2>
+          <p class="text-gray-500">Victoires : <%= team.wins.count %></p>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 
 </div>
