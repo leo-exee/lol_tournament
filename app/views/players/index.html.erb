@@ -2,25 +2,35 @@
 
 <div class="max-w-7xl mx-auto p-6">
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Tous les joueurs</h1>
-    <%= link_to "New player", new_player_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-  </div>
-
-  <div id="players" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @players.any? %>
-      <% @players.each do |player| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render player %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", player, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_player_path(player), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", player, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No players found.</p>
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="font-bold text-3xl text-gray-800">Tous les joueurs</h1>
+    <% if admin? %>
+      <a href="/players/new" class="rounded-md px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-black font-medium flex items-center transition duration-200">
+        <i class="fas fa-plus pr-2"></i>
+        Créer un joueur
+      </a>
     <% end %>
   </div>
+
+  <% if @players.any? %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @players.each do |player| %>
+        <%= link_to player_path(player), class: "block bg-white p-4 rounded-xl shadow hover:shadow-lg transition duration-200" do %>
+          <div class="flex items-center space-x-4">
+            <%= image_tag(player.role_icon, class: "w-14 h-14 rounded-full object-cover") %>
+            <div>
+              <h2 class="text-lg font-semibold text-gray-800 mb-1">
+                <%= player.first_name %> <%= player.last_name %>
+              </h2>
+              <p class="text-sm text-gray-500">🤝 Équipe : <%= player.team.name %></p>
+              <p class="text-sm text-gray-500">🎭 Rôle : <%= player.role %></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-center text-gray-500 mt-10">Aucun joueur trouvé.</p>
+  <% end %>
+
 </div>
