@@ -1,9 +1,9 @@
-<% content_for :title, "Teams" %>
+<% content_for :title, "Toutes les équipes" %>
 
 <div class="max-w-7xl mx-auto p-6">
 
   <div class="flex justify-between items-center mb-5">
-    <h1 class="font-bold text-4xl">Teams</h1>
+    <h1 class="font-bold text-4xl">Toutes les équipes</h1>
     <%= link_to "New team", new_team_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
@@ -13,11 +13,6 @@
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
           <div class="flex items-center p-4">
             <%= image_tag (team.logo.present? ? team.logo : "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png"), class: "w-16 h-16 rounded-full mr-4" %>            <h2 class="text-xl font-bold text-gray-800"><%= team.name %></h2>
-          </div>
-          <div class="flex justify-around p-4">
-            <%= link_to "Show", team, class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_team_path(team), class: "rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", team, method: :delete, class: "rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
           </div>
         </div>
       <% end %>
