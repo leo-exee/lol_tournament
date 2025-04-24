@@ -1,30 +1,45 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for(:title) || "Lol Tournament" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
-
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
-  </body>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion Tournoi LoL</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Ajoutez des styles personnalisés pour le thème League of Legends */
+    @font-face {
+      font-family: 'LeagueFont';
+      src: url('https://example.com/path-to-league-font.woff2') format('woff2'); /* Remplacez par le chemin de votre police */
+    }
+    .header-bg {
+      background-image: url('https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/gamemodeassets/classic_sru/img/gameflow-background.jpg'); /* Remplacez par une image de fond appropriée */
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <header class="header-bg text-white p-6"> <!-- Augmentation de la taille de la bannière -->
+    <div class="flex justify-between items-center">
+      <h1 class="text-4xl font-bold font-LeagueFont">Gestion du Tournoi League of Legends</h1> <!-- Changement de la taille et de la police -->
+      <nav>
+        <ul class="flex space-x-6">
+          <li><%= link_to 'Équipes', teams_path, class: 'text-white hover:text-yellow-400' %></li>
+          <li><%= link_to 'Joueurs', players_path, class: 'text-white hover:text-yellow-400' %></li>
+          <li><%= link_to 'Matchs', matches_path, class: 'text-white hover:text-yellow-400' %></li>
+          <li><%= link_to 'Accueil', root_path, class: 'text-white hover:text-yellow-400' %></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main class="p-4">
+    <%= yield %>
+  </main>
+  <footer class="bg-gray-800 text-white text-center p-4">
+    <p>&copy; 2023 Gestion Tournoi LoL</p>
+  </footer>
+</body>
 </html>

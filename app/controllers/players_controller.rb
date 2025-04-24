@@ -22,7 +22,8 @@ class PlayersController < ApplicationController
   # POST /players or /players.json
   def create
     @player = Player.new(player_params)
-
+    @teams = Team.all
+  
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: "Player was successfully created." }
@@ -33,19 +34,23 @@ class PlayersController < ApplicationController
       end
     end
   end
+  
 
-  # PATCH/PUT /players/1 or /players/1.json
-  def update
-    respond_to do |format|
-      if @player.update(player_params)
-        format.html { redirect_to @player, notice: "Player was successfully updated." }
-        format.json { render :show, status: :ok, location: @player }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @player.errors, status: :unprocessable_entity }
-      end
+# PATCH/PUT /players/1 or /players/1.json
+def update
+  @player = Player.find(params[:id])
+  @teams = Team.all
+
+  respond_to do |format|
+    if @player.update(player_params)
+      format.html { redirect_to @player, notice: "Player was successfully updated." }
+      format.json { render :show, status: :ok, location: @player }
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @player.errors, status: :unprocessable_entity }
     end
   end
+end
 
   # DELETE /players/1 or /players/1.json
   def destroy
