@@ -11,21 +11,12 @@
         <h2 class="text-2xl font-semibold text-gray-800"><%= @player.first_name %> <%= @player.last_name %></h2>
       </div>
     </div>
-  </div>
-
-  <div class="bg-white rounded-lg shadow p-4">
-    <div class="space-y-4">
+    <div class="space-y-4 mt-4">
       <div>
-        <h2 class="block font-medium mb-1">🚹 Nom :</h2>
-        <%= @player.first_name %> <%= @player.last_name %>
+        <h2 class="block font-medium mb-1">🎭 Rôle : <%= @player.role %></h2>
       </div>
       <div>
-        <h2 class="block font-medium mb-1">🎭 Rôle :</h2>
-        <%= @player.role %>
-      </div>
-      <div>
-        <h2 class="block font-medium mb-1">🤝 Équipe :</h2>
-        <%= link_to @player.team.name, team_path(@player.team), class: "hover:underline" %>
+        <h2 class="block font-medium mb-1">🤝 Équipe : <%= link_to @player.team.name, team_path(@player.team), class: "hover:underline" %></h2>
       </div>
     </div>
   </div>
