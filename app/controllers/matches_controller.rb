@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: %i[ show edit update destroy ]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
 
 
   # GET /matches or /matches.json

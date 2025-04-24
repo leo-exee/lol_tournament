@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show edit update destroy ]
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /players or /players.json
   def index
@@ -42,6 +43,8 @@ class PlayersController < ApplicationController
 # PATCH/PUT /players/1 or /players/1.json
 def update
   @player = Player.find(params[:id])
+  @teams = Team.all
+  @roles = Player::ROLES
 
   respond_to do |format|
     if @player.update(player_params)
