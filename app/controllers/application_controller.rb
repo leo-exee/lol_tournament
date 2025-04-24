@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
-  
+
   def user_signed_in?
     logged_in?
   end
@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
-  
+
   def admin?
     logged_in? && current_user.is_admin?
   end
-  
+
   def require_admin
     unless admin?
       flash[:alert] = "Accès réservé aux administrateurs"
