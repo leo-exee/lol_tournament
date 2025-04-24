@@ -7,19 +7,21 @@ class ResultsController < ApplicationController
       redirect_to @match, alert: "Ce match a déjà un résultat." and return
     end
 
-    winning_team = [ @match.team1_id, @match.team2_id ].sample
 
     @result = Result.new
     @result.match = @match
-    @result.winning_team_id = winning_team
 
-    if @result.winning_team_id == @match.team1_id
-      @result.team1_score = rand(4..8)
-      @result.team2_score = rand(0..4)
+    @result.team1_score = rand(0..10)
+    @result.team2_score = rand(0..10)
+
+    @result.winning_team = if @result.team1_score > @result.team2_score
+      @match.team1
+    elsif @result.team1_score < @result.team2_score
+      @match.team2
     else
-      @result.team1_score = rand(0..4)
-      @result.team2_score = rand(4..8)
+      nil
     end
+
 
     respond_to do |format|
       if @result.save
