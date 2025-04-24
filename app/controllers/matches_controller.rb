@@ -13,6 +13,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   def new
     @match = Match.new
+    @teams = Team.all
   end
 
   # GET /matches/1/edit
@@ -22,6 +23,7 @@ class MatchesController < ApplicationController
   # POST /matches or /matches.json
   def create
     @match = Match.new(match_params)
+    @teams = Team.all
 
     respond_to do |format|
       if @match.save
