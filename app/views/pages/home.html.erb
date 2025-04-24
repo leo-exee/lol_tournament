@@ -1,6 +1,10 @@
 <div class="max-w-7xl mx-auto p-6">
 
-  <h2 class="text-3xl font-bold mb-6">✅ Derniers matchs joués</h2>
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-3xl font-bold">✅ Derniers matchs joués</h2>
+    <%= link_to "Voir tous les matchs", matches_path, class: "hover:underline" %>
+  </div>
+
   <% if @recent_played_matches.empty? %>
     <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
       <p class="text-gray-400 italic">Aucun match récent à afficher.</p>
@@ -23,7 +27,10 @@
     </div>
   <% end %>
 
-  <h2 class="text-3xl font-bold my-6">🕒 Matchs à venir</h2>
+  <div class="flex items-center justify-between my-6">
+    <h2 class="text-3xl font-bold">🕒 Matchs à venir</h2>
+    <%= link_to "Voir tous les matchs", matches_path, class: "hover:underline" %>
+  </div>
   <% if @upcoming_matches.empty? %>
     <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
       <p class="text-gray-400 italic">Aucun match à venir pour le moment.</p>
@@ -44,7 +51,10 @@
     </div>
   <% end %>
 
-  <h2 class="text-3xl font-bold my-6">🏆 Classement des équipes</h2>
+  <div class="flex items-center justify-between my-6">
+    <h2 class="text-3xl font-bold">🏆 Classement des équipes</h2>
+    <%= link_to "Voir toutes les équipes", teams_path, class: "hover:underline" %>
+  </div>
   <% if @top_teams.empty? %>
     <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
       <p class="text-gray-400 italic">Aucune équipe dans le classement pour le moment.</p>
