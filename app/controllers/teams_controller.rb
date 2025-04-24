@@ -56,13 +56,19 @@ class TeamsController < ApplicationController
 
   # DELETE /teams/1 or /teams/1.json
   def destroy
+    @team.players.destroy_all
+    @team.home_matches.destroy_all
+    @team.away_matches.destroy_all
+    @team.wins.destroy_all
+
     @team.destroy!
 
     respond_to do |format|
-      format.html { redirect_to teams_path, status: :see_other, notice: "Team was successfully destroyed." }
+      format.html { redirect_to teams_path, status: :see_other, notice: "L'équipe a été supprimée avec succès." }
       format.json { head :no_content }
     end
   end
+
 
   private
     def set_team
