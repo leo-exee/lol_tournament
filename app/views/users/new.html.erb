@@ -4,7 +4,7 @@
 
     <% if @user.errors.any? %>
       <div class="bg-red-100 border border-red-400 text-red-700 px-5 py-4 rounded-xl mb-6" role="alert">
-        <strong class="block font-semibold mb-2">Veuillez corriger les erreurs suivantes :</strong>
+        <span class="block font-semibold mb-2">Veuillez corriger les erreurs suivantes :</span>
         <ul class="list-disc pl-5 space-y-1 text-sm">
           <% @user.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -30,7 +30,7 @@
       </div>
 
       <div>
-        <%= f.submit "S'inscrire", class: "w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2" %>
+        <%= f.submit "S'inscrire", class: "cursor-pointer w-full bg-yellow-400 hover:bg-yellow-500 py-2 px-4 rounded-lg transition duration-200 shadow focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2" %>
       </div>
     <% end %>
 

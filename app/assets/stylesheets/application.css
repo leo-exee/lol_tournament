@@ -15,7 +15,11 @@ span,
 li,
 ol,
 ul,
-a {
+a,
+input,
+option,
+select,
+div {
   font-family: "League Spartan", sans-serif;
   font-weight: 400;
 }

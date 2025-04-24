@@ -1,12 +1,40 @@
-<% content_for :title, "Showing player" %>
+<% content_for :title, "Détails du joueur" %>
 
-<div class="md:w-2/3 w-full">
+<div id="<%= dom_id(@player) %>" class="max-w-7xl mx-auto p-6 space-y-6">
 
-  <h1 class="font-bold text-4xl">Showing player</h1>
 
-  <%= render @player %>
+  <div class="bg-white rounded-lg shadow p-4">
+    <div class="flex items-center gap-4">
+      <%= image_tag(@player.role_icon.presence || "https://example.com/default-avatar.png", 
+                    alt: @player.first_name, class: "w-16 h-16 rounded-full object-cover") %>
+      <div>
+        <h2 class="text-2xl font-semibold text-gray-800"><%= @player.first_name %> <%= @player.last_name %></h2>
+      </div>
+    </div>
+  </div>
 
-  <%= link_to "Edit this player", edit_player_path(@player), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to players", players_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= button_to "Destroy this player", @player, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+  <div class="bg-white rounded-lg shadow p-4">
+    <div class="space-y-4">
+      <div>
+        <h2 class="block font-medium mb-1">🚹 Nom :</h2>
+        <%= @player.first_name %> <%= @player.last_name %>
+      </div>
+      <div>
+        <h2 class="block font-medium mb-1">🎭 Rôle :</h2>
+        <%= @player.role %>
+      </div>
+      <div>
+        <h2 class="block font-medium mb-1">🤝 Équipe :</h2>
+        <%= link_to @player.team.name, team_path(@player.team), class: "hover:underline" %>
+      </div>
+    </div>
+  </div>
+
+  <% if admin? %>
+    <div class="mt-8 flex gap-2">
+      <%= link_to "Modifier", edit_player_path(@player), class: "rounded-md px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 font-medium" %>
+      <%= button_to "Supprimer", @player, method: :delete, form_class: "inline-block", class: "rounded-md px-4 py-2 bg-red-600 text-white hover:bg-red-500 font-medium", data: { turbo_confirm: "Supprimer ce joueur ?" } %>
+    </div>
+  <% end %>
+
 </div>
