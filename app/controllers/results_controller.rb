@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   before_action :set_match, only: %i[ create ]
-  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_admin, only: [ :create ]
 
   # POST /results or /results.json
   def create
