@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_23_122317) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_24_090819) do
   create_table "matches", force: :cascade do |t|
     t.datetime "date"
     t.integer "team1_id", null: false
@@ -54,6 +54,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_23_122317) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.boolean "is_admin", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "matches", "teams", column: "team1_id"
