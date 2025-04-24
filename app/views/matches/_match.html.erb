@@ -1,14 +1,51 @@
-<div id="<%= dom_id match %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Team1:</strong>
-    <%= match.team1_id %>
+<div id="<%= dom_id(match) %>" class="w-full sm:w-auto my-5 space-y-6">
+
+  <div class="bg-white rounded-lg shadow p-4">
+    <div class="flex items-center gap-2 mb-2">
+      <%= link_to team_path(match.team1), class: "flex items-center gap-2 hover:underline mb-2" do %>
+        <%= image_tag(match.team1.logo.presence || "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png",
+                        alt: match.team1.name, class: "w-8 h-8 rounded-full") %>
+        <h2 class="text-xl font-semibold text-gray-800"><%= match.team1.name %></h2>
+      <% end %>
+    </div>
+    <ul class="list-disc list-inside text-sm text-gray-700">
+      <% match.team1.players.each do |player| %>
+        <li>
+          <%= link_to "#{player.first_name} #{player.last_name} (#{player.role})", player_path(player), class: "hover:underline" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Team2:</strong>
-    <%= match.team2_id %>
+
+  <div class="bg-white rounded-lg shadow p-4">
+    <div class="flex items-center gap-2 mb-2">
+      <%= link_to team_path(match.team2), class: "flex items-center gap-2 hover:underline mb-2" do %>
+        <%= image_tag(match.team2.logo.presence || "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png",
+                        alt: match.team2.name, class: "w-8 h-8 rounded-full") %>
+        <h2 class="text-xl font-semibold text-gray-800"><%= match.team2.name %></h2>
+      <% end %>
+    </div>
+    <ul class="list-disc list-inside text-sm text-gray-700">
+      <% match.team2.players.each do |player| %>
+        <li>
+          <%= link_to "#{player.first_name} #{player.last_name} (#{player.role})", player_path(player), class: "hover:underline" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-  <div>
-    <strong class="block font-medium mb-1">Date:</strong>
-    <%= match.date %>
+
+  <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+    <% if match.result %>
+      <p class="text-green-700 font-semibold text-lg">
+        ✅ Victoire de <%= match.result.winning_team.name %>
+      </p>
+      <p class="text-gray-600 mt-1">
+        <%= match.team1.name %> : <%= match.result.team1_score %> — <%= match.result.team2_score %> : <%= match.team2.name %>
+      </p>
+    <% else %>
+      <p class="text-gray-400 italic">
+        Les résultats de ce match ne sont pas encore disponibles.
+      </p>
+    <% end %>
   </div>
 </div>
