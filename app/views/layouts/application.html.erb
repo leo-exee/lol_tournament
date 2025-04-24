@@ -9,12 +9,8 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'LeagueFont';
-      src: url('https://example.com/path-to-league-font.woff2') format('woff2'); 
-    }
     .header-bg {
-      background-image: url('https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/gamemodeassets/classic_sru/img/gameflow-background.jpg'); /* Remplacez par une image de fond appropriée */
+      background-image: url('https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/content/src/leagueclient/gamemodeassets/classic_sru/img/gameflow-background.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -26,16 +22,16 @@
     }
   </style>
 </head>
-<body class="bg-gray-100">
-  <header class="header-bg text-white p-6">
-    <div class="flex justify-between items-center">
-      <h1 class="text-4xl font-bold font-LeagueFont">Gestion du Tournoi League of Legends</h1>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+  <header class="header-bg text-white p-6"> 
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <h1 class="text-4xl font-bold">Gestion du Tournoi League of Legends</h1>
       <nav>
-        <ul class="flex space-x-6 items-center">
+        <ul class="flex space-x-6">
+          <li><%= link_to 'Accueil', root_path, class: 'text-white hover:text-yellow-400' %></li>
+          <li><%= link_to 'Matchs', matches_path, class: 'text-white hover:text-yellow-400' %></li>
           <li><%= link_to 'Équipes', teams_path, class: 'text-white hover:text-yellow-400' %></li>
           <li><%= link_to 'Joueurs', players_path, class: 'text-white hover:text-yellow-400' %></li>
-          <li><%= link_to 'Matchs', matches_path, class: 'text-white hover:text-yellow-400' %></li>
-          <li><%= link_to 'Accueil', root_path, class: 'text-white hover:text-yellow-400' %></li>
                     <li class="relative">
             <% if user_signed_in? %>
               <button id="userMenuButton" class="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg focus:outline-none border-2 border-yellow-400">
@@ -76,14 +72,16 @@
       </nav>
     </div>
   </header>
-  <main class="p-4">
+
+  <main class="p-4 flex-grow">
     <div class="container mx-auto">
       <%= render 'layouts/flash' %>
       <%= yield %>
     </div>
   </main>
-  <footer class="bg-gray-800 text-white text-center p-4">
-    <p>&copy; 2023 Gestion Tournoi LoL</p>
+
+  <footer class="header-bg bg-gray-800 text-white text-center p-4">
+    <p>&copy; 2025 Gestion Tournoi LoL</p>
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
