@@ -20,7 +20,7 @@ class Match < ApplicationRecord
     end
   end
   def date_cannot_be_in_the_past
-    if date.present? && date < Time.current
+    if date.present? && date < Time.current.in_time_zone('Paris')
       errors.add(:base, "La date ne peut pas être dans le passé")
     end
   end
