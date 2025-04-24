@@ -5,6 +5,7 @@ class Team < ApplicationRecord
   has_many :wins, class_name: 'Result', foreign_key: 'winning_team_id'
 
   validates :name, presence: true, uniqueness: true
+  validates :logo, allow_blank: true, format: { with: URI::regexp(%w[http https]), message: "doit être une URL valide" }
 
   validate :max_five_players
 
