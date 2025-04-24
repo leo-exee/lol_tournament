@@ -1,7 +1,7 @@
 <%= form_with(model: team, class: "contents") do |form| %>
   <% if team.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      <h2><%= pluralize(team.errors.count, "erreur") %> a empêché l'enregistrement de l'équipe :</h2>
 
       <ul class="list-disc ml-6">
         <% team.errors.each do |error| %>
@@ -12,11 +12,17 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
+    <%= form.label :name, "Nom de l'équipe" %>
     <%= form.text_field :name, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": team.errors[:name].none?, "border-red-400 focus:outline-red-600": team.errors[:name].any?}] %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :logo, "URL du logo de l'équipe" %>
+    <%= form.text_field :logo, class: "block shadow-sm rounded-md border px-3 py-2 mt-2 w-full" %>
+    <small class="text-gray-600 mt-1">Veuillez entrer l'URL du logo de l'équipe (ex : https://exemple.com/logo.png).</small>
+  </div>
+
   <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit "Enregistrer l'équipe", class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

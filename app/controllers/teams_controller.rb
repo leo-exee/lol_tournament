@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[ show edit update destroy ]
-  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_admin, only: [ :new, :create, :edit, :update, :destroy ]
 
   # GET /teams or /teams.json
   def index
@@ -9,6 +9,12 @@ class TeamsController < ApplicationController
 
   # GET /teams/1 or /teams/1.json
   def show
+    @players = @team.players
+    @home_matches = @team.home_matches.includes(:result)
+    @away_matches = @team.away_matches.includes(:result)
+    @wins = @team.wins
+    @lost_matches = (@home_matches.where.not(result: { winning_team_id: @team.id }) +
+                     @away_matches.where.not(result: { winning_team_id: @team.id }))
   end
 
   # GET /teams/new

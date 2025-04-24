@@ -1,12 +1,63 @@
-<% content_for :title, "Showing team" %>
+<% content_for :title, "Détails de l'équipe" %>
+<div class="max-w-7xl mx-auto p-6">
+  <div id="<%= dom_id(@team) %>" class="space-y-6">
+    <div class="flex items-center gap-4 mb-6">
+      <%= image_tag(@team.logo.presence || "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png", alt: @team.name, class: "w-12 h-12 rounded-full") %>
+      <h1 class="font-bold text-3xl"><%= @team.name %></h1>
+    </div>
 
-<div class="md:w-2/3 w-full">
+    <div class="bg-white rounded-lg shadow p-4">
+      <h2 class="block text-xl font-semibold text-gray-800">🤝 Joueurs :</h2>
+      <% if @players.empty? %>
+        <p class="text-gray-600">Aucun joueur n'est actuellement dans cette équipe.</p>
+      <% else %>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <% @players.each do |player| %>
+            <li>
+              <%= link_to "#{player.first_name} #{player.last_name} (#{player.role})", player_path(player), class: "hover:underline" %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
-  <h1 class="font-bold text-4xl">Showing team</h1>
+    <div class="bg-white rounded-lg shadow p-4">
+      <h2 class="block text-xl font-semibold text-gray-800">🏆 Victoires :</h2>
+      <% if @wins.empty? %>
+        <p class="text-gray-600">Aucune victoire enregistrée pour cette équipe.</p>
+      <% else %>
+        <ul class="list-disc list-inside text-sm">
+          <% @wins.each do |win| %>
+            <li class="text-green-600 flex justify-between items-center">
+              <span><%= link_to "Match du #{win.match.date.strftime('%d/%m/%Y')} - #{win.match.team1.name} vs #{win.match.team2.name}", match_path(win.match), class: "text-green-600 hover:underline" %></span>
+              Score: <%= win.match.result.team1_score %> - <%= win.match.result.team2_score %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
-  <%= render @team %>
+    <div class="bg-white rounded-lg shadow p-4">
+      <h2 class="block text-xl font-semibold text-gray-800">😞 Défaites :</h2>
+      <% if @lost_matches.empty? %>
+        <p class="text-gray-600">Aucune défaite enregistrée pour cette équipe.</p>
+      <% else %>
+        <ul class="list-disc list-inside text-sm">
+          <% @lost_matches.each do |lost| %>
+            <li class="text-red-600 flex justify-between items-center">
+              <span><%= link_to "Match du #{lost.date.strftime('%d/%m/%Y')} - #{lost.team1.name} vs #{lost.team2.name}", match_path(lost), class: "text-red-600 hover:underline" %></span>
+              Score: <%= lost.result.team1_score %> - <%= lost.result.team2_score %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
 
-  <%= link_to "Edit this team", edit_team_path(@team), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to teams", teams_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= button_to "Destroy this team", @team, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+  <% if admin? %>
+    <div class="mt-6 flex justify-center gap-4">
+      <%= link_to "Modifier", edit_team_path(@team), class: "px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-300" %>
+      <%= button_to "Supprimer", @team, method: :delete, form_class: "inline-block", class: "px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300", data: { turbo_confirm: "Êtes-vous sûr ?" } %>
+    </div>
+  <% end %>
 </div>
