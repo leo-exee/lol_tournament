@@ -1,6 +1,6 @@
 <div class="max-w-7xl mx-auto p-6">
 
-  <div class="flex items-center justify-between mb-6">
+  <div class="flex items-center justify-between mb-8">
     <h2 class="text-3xl font-bold">✅ Derniers matchs joués</h2>
     <p class="flex items-center">
       <%= link_to "Voir tous les matchs", matches_path, class: "hover:underline" %>
@@ -30,7 +30,7 @@
     </div>
   <% end %>
 
-  <div class="flex items-center justify-between my-6">
+  <div class="flex items-center justify-between my-8">
     <h2 class="text-3xl font-bold">🕒 Matchs à venir</h2>
     <p class="flex items-center">
       <%= link_to "Voir tous les matchs", matches_path, class: "hover:underline" %>
@@ -57,10 +57,10 @@
     </div>
   <% end %>
 
-  <div class="flex items-center justify-between my-6">
+  <div class="flex items-center justify-between my-8">
     <h2 class="text-3xl font-bold">🏆 Classement des équipes</h2>
     <p class="flex items-center">
-      <%= link_to "Voir toutes les équipes", matches_path, class: "hover:underline" %>
+      <%= link_to "Voir toutes les équipes", teams_path, class: "hover:underline" %>
       <i class="fa-solid fa-angle-right pl-2"></i>
     </p>
   </div>
