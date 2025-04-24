@@ -1,25 +1,35 @@
 <div id="<%= dom_id(match) %>" class="w-full sm:w-auto my-5 space-y-6">
 
   <div class="bg-white rounded-lg shadow p-4">
-    <h2 class="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2">
-      <%= image_tag match.team1.logo.present? ? match.team1.logo : "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png", alt: match.team1.name, class: "w-8 h-8 rounded-full" %>
-      <%= match.team1.name %>
-    </h2>
+    <div class="flex items-center gap-2 mb-2">
+      <%= link_to team_path(match.team1), class: "flex items-center gap-2 hover:underline mb-2" do %>
+        <%= image_tag(match.team1.logo.presence || "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png",
+                        alt: match.team1.name, class: "w-8 h-8 rounded-full") %>
+        <h2 class="text-xl font-semibold text-gray-800"><%= match.team1.name %></h2>
+      <% end %>
+    </div>
     <ul class="list-disc list-inside text-sm text-gray-700">
       <% match.team1.players.each do |player| %>
-        <li><%= "#{player.first_name} #{player.last_name} (#{player.role})" %></li>
+        <li>
+          <%= link_to "#{player.first_name} #{player.last_name} (#{player.role})", player_path(player), class: "hover:underline" %>
+        </li>
       <% end %>
     </ul>
   </div>
 
   <div class="bg-white rounded-lg shadow p-4">
-    <h2 class="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2">
-      <%= image_tag match.team2.logo.present? ? match.team2.logo : "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png", alt: match.team2.name, class: "w-8 h-8 rounded-full" %>
-      <%= match.team2.name %>
-    </h2>
+    <div class="flex items-center gap-2 mb-2">
+      <%= link_to team_path(match.team2), class: "flex items-center gap-2 hover:underline mb-2" do %>
+        <%= image_tag(match.team2.logo.presence || "https://static.wikia.nocookie.net/leagueoflegends/images/0/04/Ionia_profileicon.png",
+                        alt: match.team2.name, class: "w-8 h-8 rounded-full") %>
+        <h2 class="text-xl font-semibold text-gray-800"><%= match.team2.name %></h2>
+      <% end %>
+    </div>
     <ul class="list-disc list-inside text-sm text-gray-700">
       <% match.team2.players.each do |player| %>
-        <li><%= "#{player.first_name} #{player.last_name} (#{player.role})" %></li>
+        <li>
+          <%= link_to "#{player.first_name} #{player.last_name} (#{player.role})", player_path(player), class: "hover:underline" %>
+        </li>
       <% end %>
     </ul>
   </div>
