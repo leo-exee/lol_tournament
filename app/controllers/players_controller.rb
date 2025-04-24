@@ -13,6 +13,8 @@ class PlayersController < ApplicationController
   # GET /players/new
   def new
     @player = Player.new
+    @teams = Team.all
+    @roles = Player::ROLES
   end
 
   # GET /players/1/edit
@@ -23,7 +25,8 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     @teams = Team.all
-  
+    @roles = Player::ROLES
+
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: "Player was successfully created." }
@@ -39,7 +42,6 @@ class PlayersController < ApplicationController
 # PATCH/PUT /players/1 or /players/1.json
 def update
   @player = Player.find(params[:id])
-  @teams = Team.all
 
   respond_to do |format|
     if @player.update(player_params)

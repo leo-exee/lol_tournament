@@ -12,19 +12,23 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :team1_id %>
-    <%= form.number_field :team1_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match.errors[:team1_id].none?, "border-red-400 focus:outline-red-600": match.errors[:team1_id].any?}] %>
+    <%= form.label :team1_id, "Team 1" %>
+    <%= form.collection_select :team1_id, @teams, :id, :name, { prompt: "Select a team" }, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match.errors[:team].none?, "border-red-400 focus:outline-red-600": match.errors[:team].any?}] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :team2_id %>
-    <%= form.number_field :team2_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match.errors[:team2_id].none?, "border-red-400 focus:outline-red-600": match.errors[:team2_id].any?}] %>
+    <%= form.label :team2_id, "Team 2" %>
+    <%= form.collection_select :team2_id, @teams, :id, :name, { prompt: "Select a team" }, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match.errors[:team].none?, "border-red-400 focus:outline-red-600": match.errors[:team].any?}] %>
   </div>
 
-  <div class="my-5">
-    <%= form.label :date %>
-    <%= form.datetime_field :date, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": match.errors[:date].none?, "border-red-400 focus:outline-red-600": match.errors[:date].any?}] %>
-  </div>
+<div class="my-5">
+  <%= form.label :date %>
+  <%= form.datetime_field :date, 
+      class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", 
+      {"border-gray-400 focus:outline-blue-600": match.errors[:date].none?, 
+      "border-red-400 focus:outline-red-600": match.errors[:date].any?}], 
+      min: Time.current.in_time_zone('Paris').strftime("%Y-%m-%dT%H:%M") %>
+</div>
 
   <div class="inline">
     <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
