@@ -26,9 +26,9 @@ class ResultsController < ApplicationController
 
     respond_to do |format|
       if @result.save
-        format.html { redirect_to @match, notice: "Le résultat a été créé avec succès." }
+        format.html { redirect_to @match, notice: "Le résultat a été générée avec succès." }
       else
-        format.html { redirect_to @match, alert: "Erreur lors de la création du résultat." }
+        format.html { redirect_to @match, alert: "Erreur lors de la génération du résultat." }
       end
     end
   end
