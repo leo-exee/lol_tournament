@@ -25,9 +25,7 @@ bundle install
 
 ---
 
-## 🧱 Base de données
-
-### Créer, migrer et peupler la base de données
+## 🧱 Créer, migrer et peupler la base de données
 
 ```bash
 rails db:create
@@ -69,7 +67,7 @@ Accède à l'application via : [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 📸 Aperçu
+## 📸 Aperçus
 
 ![Page d'accueil](https://cdn.discordapp.com/attachments/1243134920038285372/1365252479226347540/Screenshot_2025-04-25_at_11.00.05.png?ex=680ca1f4&is=680b5074&hm=74f1ff1392c67b518c27591fee6b569b320f09db70f5d97f687295d518b34f5c& "Page d'accueil")
 ![Liste des matchs](https://cdn.discordapp.com/attachments/1243134920038285372/1365252479859818506/Screenshot_2025-04-25_at_11.00.42.png?ex=680ca1f4&is=680b5074&hm=cc3c23530489718d96cb28b87c2ecdd60cc2795f1a03e044686b4d17ce88a5d0& "Liste des matchs")
@@ -78,6 +76,6 @@ Accède à l'application via : [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 👤 Auteur
+## 👤 Auteurs
 
 Projet développé par **Léopold JACQUET** et **Pierre MURAIL** dans le cadre du projet Ruby on Rails.
