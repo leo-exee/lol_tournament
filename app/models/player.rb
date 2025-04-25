@@ -10,15 +10,15 @@ class Player < ApplicationRecord
   def role_icon
     case role
     when "Top laner"
-      "https://static.wikia.nocookie.net/leagueoflegends/images/0/0a/Top_Laner_icon.png"
+      "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-top.png"
     when "Jungler"
-      "https://static.wikia.nocookie.net/leagueoflegends/images/1/17/Jungle_Laner_icon.png"
+      "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2ec970f4-1706-4915-9a93-41f3d9c8202c/degndao-3803ac5c-8d3b-4205-bdac-17e03fb712dd.png/v1/fill/w_436,h_491/lol_jungle_icon_by_divoras_degndao-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDkxIiwicGF0aCI6IlwvZlwvMmVjOTcwZjQtMTcwNi00OTE1LTlhOTMtNDFmM2Q5YzgyMDJjXC9kZWduZGFvLTM4MDNhYzVjLThkM2ItNDIwNS1iZGFjLTE3ZTAzZmI3MTJkZC5wbmciLCJ3aWR0aCI6Ijw9NDM2In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.1QIU7-OGEaPcDPPJbvgfZ1GiMiqTUk3MZsXimMqpK2E"
     when "Mid laner"
-      "https://static.wikia.nocookie.net/leagueoflegends/images/4/45/Mid_Laner_icon.png"
+      "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-clash/global/default/assets/images/position-selector/positions/icon-position-middle.png"
     when "ADC"
-      "https://static.wikia.nocookie.net/leagueoflegends/images/c/c6/ADC_Laner_icon.png"
+      "https://cdn3.emoji.gg/emojis/1659_BotLane.png"
     when "Support"
-      "https://static.wikia.nocookie.net/leagueoflegends/images/6/6d/Support_Laner_icon.png"
+      "https://i.namu.wiki/i/wkBv6sjhYwd14wdE8UX-tL9DWMrvtKuRlqSOZlEoEm3KU8-pShy2BMQvUxPSqLnItXEVfpXCkKV-M77hwwpXxQ.svg"
     else
       "https://via.placeholder.com/150"
     end
