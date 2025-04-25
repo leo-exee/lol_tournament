@@ -1,6 +1,6 @@
-# League of Legends Tournament Manager
+# Gestion du Tournoi League of Legends
 
-Une application Ruby on Rails permettant de gérer un tournoi League of Legends :
+Une application Ruby on Rails permettant de gérer des tournois League of Legends :
 - Gestion des équipes, joueurs, matchs et résultats
 - Interface moderne avec TailwindCSS
 - Authentification admin (from scratch avec bcrypt)
