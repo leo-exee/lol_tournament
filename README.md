@@ -71,10 +71,10 @@ Accède à l'application via : [http://localhost:3000](http://localhost:3000)
 
 ## 📸 Aperçu
 
-[Page d'accueil](https://cdn.discordapp.com/attachments/1243134920038285372/1365252479226347540/Screenshot_2025-04-25_at_11.00.05.png?ex=680ca1f4&is=680b5074&hm=74f1ff1392c67b518c27591fee6b569b320f09db70f5d97f687295d518b34f5c& "Page d'accueil")
-[Liste des matchs](https://cdn.discordapp.com/attachments/1243134920038285372/1365252479859818506/Screenshot_2025-04-25_at_11.00.42.png?ex=680ca1f4&is=680b5074&hm=cc3c23530489718d96cb28b87c2ecdd60cc2795f1a03e044686b4d17ce88a5d0& "Liste des matchs")
-[Liste des équipes](https://cdn.discordapp.com/attachments/1243134920038285372/1365252481063321670/Screenshot_2025-04-25_at_11.01.34.png?ex=680ca1f4&is=680b5074&hm=37cd43c2f414b1ca4d7a6cf6271402989acc201a4de8893ec49a3a5883dbdbf2& "Liste des équipes")
-[Liste des joueurs](https://media.discordapp.net/attachments/1243134920038285372/1365252482921402420/Screenshot_2025-04-25_at_11.02.40.png?ex=680ca1f5&is=680b5075&hm=967ee04d5394519067b05e1b374ac9b89c94b25b73c1aa6ca255938d8c9796a4&=&format=webp&quality=lossless&width=1433&height=821 "Liste des joueurs")
+![Page d'accueil](https://cdn.discordapp.com/attachments/1243134920038285372/1365252479226347540/Screenshot_2025-04-25_at_11.00.05.png?ex=680ca1f4&is=680b5074&hm=74f1ff1392c67b518c27591fee6b569b320f09db70f5d97f687295d518b34f5c& "Page d'accueil")
+![Liste des matchs](https://cdn.discordapp.com/attachments/1243134920038285372/1365252479859818506/Screenshot_2025-04-25_at_11.00.42.png?ex=680ca1f4&is=680b5074&hm=cc3c23530489718d96cb28b87c2ecdd60cc2795f1a03e044686b4d17ce88a5d0& "Liste des matchs")
+![Liste des équipes](https://cdn.discordapp.com/attachments/1243134920038285372/1365252481063321670/Screenshot_2025-04-25_at_11.01.34.png?ex=680ca1f4&is=680b5074&hm=37cd43c2f414b1ca4d7a6cf6271402989acc201a4de8893ec49a3a5883dbdbf2& "Liste des équipes")
+![Liste des joueurs](https://media.discordapp.net/attachments/1243134920038285372/1365252482921402420/Screenshot_2025-04-25_at_11.02.40.png?ex=680ca1f5&is=680b5075&hm=967ee04d5394519067b05e1b374ac9b89c94b25b73c1aa6ca255938d8c9796a4&=&format=webp&quality=lossless&width=1433&height=821 "Liste des joueurs")
 
 ---
 
